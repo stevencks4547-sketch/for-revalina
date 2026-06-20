@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Revalina ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    font-family: Arial, sans-serif;
+    overflow:hidden;
+    color:white;
+}
+
+.card{
+    width:85%;
+    max-width:600px;
+    padding:30px;
+    background: rgba(255,255,255,0.08);
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    text-align:center;
+    box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+
+h1{
+    margin-bottom:20px;
+    color:#ff7aa2;
+}
+
+#text{
+    min-height:200px;
+    line-height:1.8;
+    white-space:pre-line;
+    font-size:16px;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff7aa2;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.heart{
+    position:absolute;
+    color:#ff7aa2;
+    animation:fall linear infinite;
+    opacity:0.6;
+}
+
+@keyframes fall{
+    from{transform:translateY(-50px);}
+    to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Untuk Revalina ❤️</h1>
+
+    <div id="text"></div>
+
+    <button onclick="playMusic()">
+        🎵 Mainkan Lagu
+    </button>
+
+    <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+
+// ====== 音乐 ======
+function playMusic(){
+    document.getElementById("music").play();
+}
+
+// ====== 打字内容（重点） ======
+const message = `Revalina,
+
+Saya tahu awak mungkin sedang penat sekarang.
+
+Saya tidak mahu membebankan awak dengan kata-kata yang panjang.
+
+Saya cuma mahu awak tahu satu perkara:
+
+Saya hargai awak.
+
+Saya faham kenapa awak rasa tidak selesa atau terganggu dengan apa yang berlaku.
+
+Saya tidak akan mencari alasan.
+
+Saya cuma mahu jadi seseorang yang lebih baik untuk awak.
+
+Kalau awak perlukan masa, saya akan tunggu.
+
+Kalau awak perlukan ruang, saya akan hormat.
+
+Saya tak minta jawapan sekarang.
+
+Saya cuma harap awak jaga diri baik-baik. ❤️`;
+
+let i = 0;
+
+function type(){
+    if(i < message.length){
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(type,35);
+    }
+}
+type();
+
+// ====== 飘落爱心 ======
+for(let i=0;i<35;i++){
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (10+Math.random()*25)+"px";
+    heart.style.animationDuration = (5+Math.random()*8)+"s";
+    document.body.appendChild(heart);
+}
+
+</script>
+
+</body>
+</html>
