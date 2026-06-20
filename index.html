@@ -8,54 +8,34 @@
 <style>
 body{
     margin:0;
-    height:100vh;
-    overflow:hidden;
     font-family: Arial;
     background: linear-gradient(135deg,#0f172a,#1e293b);
     color:white;
-    display:flex;
+    overflow:hidden;
+}
+
+/* 页面 */
+.page{
+    display:none;
+    height:100vh;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:40px;
 }
 
-/* 光点背景 */
-.bg{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background: radial-gradient(circle at 30% 30%, #ff4d6d33, transparent 40%),
-                radial-gradient(circle at 70% 70%, #4da6ff33, transparent 40%);
-    animation: move 6s infinite alternate;
-}
-
-@keyframes move{
-    from{transform:scale(1);}
-    to{transform:scale(1.1);}
+.active{
+    display:flex;
 }
 
 /* 卡片 */
 .card{
-    position:relative;
-    z-index:2;
-    width:85%;
     max-width:600px;
-    padding:30px;
-    border-radius:20px;
     background:rgba(255,255,255,0.06);
-    backdrop-filter: blur(12px);
-    text-align:center;
-    box-shadow:0 0 30px rgba(0,0,0,0.4);
-}
-
-h1{
-    color:#ff6b81;
-}
-
-/* 打字 */
-#text{
-    min-height:180px;
-    line-height:1.8;
-    white-space:pre-line;
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
 }
 
 /* 按钮 */
@@ -67,11 +47,6 @@ button{
     background:#ff4d6d;
     color:white;
     cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.05);
 }
 
 /* 爱心 */
@@ -79,7 +54,6 @@ button:hover{
     position:absolute;
     color:#ff4d6d;
     animation:fall linear infinite;
-    opacity:0.5;
 }
 
 @keyframes fall{
@@ -91,63 +65,119 @@ button:hover{
 
 <body>
 
-<div class="bg"></div>
+<!-- 音乐 -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-<div class="card">
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+    <div class="card">
+        <h1>Untuk Revalina ❤️</h1>
+        <p>Klik untuk masuk ke dalam sesuatu yang saya buat khas untuk awak.</p>
+        <button onclick="next(2);playMusic()">Masuk →</button>
+    </div>
+</div>
 
-    <h1>Untuk Revalina ❤️</h1>
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+    <div class="card">
+        <h2>Hi Revalina ❤️</h2>
+        <p>Saya ada beberapa perkara yang saya mahu awak baca dengan tenang.</p>
+        <button onclick="next(3)">Teruskan →</button>
+    </div>
+</div>
 
-    <div id="text"></div>
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+    <div class="card">
+        <h2>Awak Penting</h2>
+        <p>Saya mungkin tidak selalu sempurna.</p>
+        <p>Tapi awak selalu penting dalam hidup saya.</p>
+        <button onclick="next(4)">→</button>
+    </div>
+</div>
 
-    <button onclick="next()">
-        Teruskan →
-    </button>
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+    <div class="card">
+        <h2>Tentang Perkara Itu</h2>
+        <p>Saya tahu ia menyakitkan awak.</p>
+        <p>Saya tidak mahu mempertahankan diri.</p>
+        <p>Saya cuma mahu awak rasa dihargai.</p>
+        <button onclick="next(5)">→</button>
+    </div>
+</div>
 
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+    <div class="card">
+        <h2>Saya Faham</h2>
+        <p>Kalau awak rasa marah atau kecewa, saya faham.</p>
+        <p>Saya tak akan paksa awak okay.</p>
+        <button onclick="next(6)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+    <div class="card">
+        <h2>Perkara Kecil Tapi Bermakna</h2>
+        <p>Senyuman awak.</p>
+        <p>Cara awak bercakap.</p>
+        <p>Semua itu saya ingat.</p>
+        <button onclick="next(7)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+    <div class="card">
+        <h2>Untuk Masa Depan</h2>
+        <p>Saya mahu jadi lebih baik untuk awak.</p>
+        <p>Bukan untuk hari ini saja, tapi untuk masa depan.</p>
+        <button onclick="next(8)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 8 MUSIC -->
+<div class="page" id="p8">
+    <div class="card">
+        <h2>🎵 Musik</h2>
+        <p>Klik kalau awak nak dengar lagu.</p>
+        <button onclick="playMusic()">Mainkan Lagu</button>
+        <button onclick="next(9)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 9 FINAL -->
+<div class="page" id="p9">
+    <div class="card">
+        <h1>Revalina ❤️</h1>
+        <p>Saya tak minta jawapan sekarang.</p>
+        <p>Saya cuma mahu awak tahu saya masih di sini.</p>
+        <p><b>Saya masih pilih awak.</b></p>
+    </div>
 </div>
 
 <script>
 
-const text = `Revalina,
-
-Saya tahu awak mungkin sedang penat sekarang.
-
-Saya tidak mahu memaksa awak untuk rasa apa-apa.
-
-Saya cuma mahu awak tahu satu perkara:
-
-Saya hargai awak.
-
-Dan saya sedar saya mungkin tidak selalu faham perasaan awak dengan baik.
-
-Tapi saya sedang belajar.
-
-Bukan untuk jadi sempurna,
-tapi untuk jadi lebih baik untuk awak.`;
-
-let i = 0;
-
-function type(){
-    if(i < text.length){
-        document.getElementById("text").innerHTML += text[i];
-        i++;
-        setTimeout(type,35);
-    }
-}
-type();
-
-function next(){
-    document.getElementById("text").innerHTML =
-    "Saya tak minta awak jawab sekarang.\n\nSaya cuma harap awak jaga diri baik-baik ❤️";
+function next(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('p'+n).classList.add('active');
 }
 
-/* 爱心雨 */
-for(let i=0;i<35;i++){
+function playMusic(){
+    document.getElementById("music").play();
+}
+
+/* 爱心 */
+for(let i=0;i<30;i++){
     let h=document.createElement("div");
     h.className="heart";
     h.innerHTML="❤";
     h.style.left=Math.random()*100+"vw";
     h.style.animationDuration=(5+Math.random()*8)+"s";
-    h.style.fontSize=(10+Math.random()*20)+"px";
     document.body.appendChild(h);
 }
 
