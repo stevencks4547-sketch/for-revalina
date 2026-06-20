@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Revalina ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+    overflow:hidden;
+}
+
+/* 页面 */
+.page{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:30px;
+}
+
+.active{
+    display:flex;
+}
+
+/* 卡片 */
+.card{
+    max-width:650px;
+    background:rgba(255,255,255,0.06);
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter: blur(10px);
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+/* 按钮 */
+button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+}
+
+/* 爱心 */
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    animation:fall linear infinite;
+    opacity:0.5;
+}
+
+@keyframes fall{
+    from{transform:translateY(-50px);}
+    to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 音乐 -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+    <div class="card">
+        <h1>Untuk Revalina ❤️</h1>
+        <p>Sebelum awak masuk, klik untuk mulakan.</p>
+
+        <button onclick="start()">
+            Masuk →
+        </button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+    <div class="card">
+        <h2>Hi Revalina</h2>
+        <p>Saya tulis ini dengan tenang.</p>
+        <p>Bukan mahu memaksa, tetapi cuma untuk berkongsi perasaan saya.</p>
+        <button onclick="next(3)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+    <div class="card">
+        <h2>Tentang Kamu</h2>
+
+        <p>
+Revalina,
+
+Saya masih ingat saat pertama kali hati saya tertawan.
+Mungkin dari saat itu, saya mula ada perasaan cinta dengan kamu.
+        </p>
+
+        <p>
+Setiap kali saya lihat keychain yang kamu beri kepada saya,
+saya akan teringat kamu.
+        </p>
+
+        <p>
+Saya rindu kamu. Dan ya, saya sayang kamu.
+        </p>
+
+        <button onclick="next(4)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+    <div class="card">
+        <h2>Saya Sedar</h2>
+        <p>Saya tidak selalu matang dalam cara saya bertindak.</p>
+        <p>Kalau saya ada menyakitkan hati kamu, saya minta maaf.</p>
+        <button onclick="next(5)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+    <div class="card">
+        <h2>Saya Faham</h2>
+        <p>Kalau awak masih terasa atau kecewa, saya faham.</p>
+        <p>Saya tidak akan paksa awak untuk maafkan saya.</p>
+        <button onclick="next(6)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+    <div class="card">
+        <h2>Terima Kasih</h2>
+        <p>Walaupun begitu, kamu masih tetap memilih saya.</p>
+        <p>Dan saya sangat hargai peluang itu.</p>
+        <button onclick="next(7)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+    <div class="card">
+        <h2>Saya Mahu Jadi Lebih Baik</h2>
+        <p>Bukan sekadar kata-kata.</p>
+        <p>Tapi tindakan sebenar.</p>
+        <button onclick="next(8)">→</button>
+    </div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+    <div class="card">
+        <h2>🎵 Musik</h2>
+        <p>Klik untuk mainkan muzik.</p>
+
+        <button onclick="playMusic()">
+            Play Music
+        </button>
+
+        <button onclick="next(9)">
+            →
+        </button>
+    </div>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="p9">
+    <div class="card">
+        <h1>Revalina ❤️</h1>
+        <p>Saya tak minta jawapan sekarang.</p>
+        <p>Saya cuma mahu kamu tahu saya masih di sini.</p>
+        <p><b>Saya masih memilih awak.</b></p>
+        <p>Semoga Tuhan memberkati kita.</p>
+    </div>
+</div>
+
+<script>
+
+/* 进入 + 音乐一起启动 */
+function start(){
+    const music = document.getElementById('music');
+    if(music){
+        music.play();
+    }
+    next(2);
+}
+
+/* 切换页面 */
+function next(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('p'+n).classList.add('active');
+}
+
+/* 单独播放音乐 */
+function playMusic(){
+    document.getElementById('music').play();
+}
+
+/* 爱心 */
+for(let i=0;i<30;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(5+Math.random()*8)+"s";
+    document.body.appendChild(h);
+}
+
+</script>
+
+</body>
+</html>
